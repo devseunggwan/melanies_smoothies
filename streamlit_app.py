@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import requests
 from snowflake.snowpark.functions import col
 
 # Write directly to the app
@@ -24,6 +25,9 @@ ingredients_list = st.multiselect(
 )
 
 submit_button = st.button("Submit Order")
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
 
 if submit_button:
     ingredients_str = ",".join(ingredients_list)
